@@ -67,18 +67,6 @@ function Home() {
           // border: "2px solid red",
         }}
       />
-
-      <div
-        style={{
-          height: 30,
-          width: 30,
-          background: "red",
-          postion: "absolute",
-          left: 100,
-          top: 900,
-          border: "2px solid red",
-        }}
-      ></div>
     </div>
   );
 }
