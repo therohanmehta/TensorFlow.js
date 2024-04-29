@@ -64,7 +64,7 @@ function Home() {
           left: 0,
           top: 0,
           margin: "auto",
-          border: "2px solid red",
+          // border: "2px solid red",
         }}
       />
 
