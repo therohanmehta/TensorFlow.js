@@ -47,8 +47,8 @@ function Home() {
       <Webcam
         ref={webcamRef}
         style={{
-          width: window.innerWidth,
-          height: window.innerHeight,
+          width: 600,
+          height: 480,
           position: "absolute",
           margin: "auto",
           left: 0,
@@ -58,8 +58,8 @@ function Home() {
       <canvas
         ref={canvasRef}
         style={{
-          width: window.innerWidth,
-          height: window.innerHeight,
+          width: 600,
+          height: 480,
           position: "absolute",
           left: 0,
           top: 0,
