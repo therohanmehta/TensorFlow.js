@@ -17,7 +17,7 @@ function Home() {
 
     setInterval(() => {
       detect(net);
-    }, 1000);
+    }, 100);
   };
 
   const detect = async (net) => {
