@@ -3,19 +3,22 @@ import React, { useRef, useState } from "react";
 import Webcam from "react-webcam";
 import * as tf from "@tensorflow/tfjs";
 import * as handPose from "@tensorflow-models/handpose";
-import { KeyPointDetector } from "./components/KeyPointDetector";
-import * as fp from "fingerpose";
+// import * as fp from "fingerpose";
 import Image from "next/image";
+import * as faceDetect from "@tensorflow-models/facemesh";
+import { FacePointDetector } from "../components/FacePointDetector";
 
-function Home() {
+function Face() {
   const [HandPose, setHandPose] = useState("");
   const [appReady, setAppReady] = useState(false);
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
-  const runHandPose = async () => {
-    const net = await handPose.load();
-    // console.log("handpose loaderr");
 
+  const runFacemesh = async () => {
+    const net = await faceDetect.load({
+      inputResolution: { width: 600, height: 480 },
+      scale: 0.8,
+    });
     setInterval(() => {
       detect(net);
     }, 100);
@@ -37,30 +40,12 @@ function Home() {
       canvasRef.current.width = videoWidth;
       canvasRef.current.height = videoHeight;
 
-      const hand = await net.estimateHands(video);
-      console.log(hand);
-      // if (hand) {
-      // setAppReady(true);
-      // }
-      if (hand.length > 0) {
-        const GE = new fp.GestureEstimator([
-          fp.Gestures.VictoryGesture,
-          fp.Gestures.ThumbsUpGesture,
-        ]);
-        const gesture = await GE.estimate(hand[0].landmarks, 8);
-        if (gesture.gestures.length > 0) {
-          console.log(gesture.gestures[0].name);
-          setHandPose(gesture.gestures[0].name);
-        }
-      }
-
-      const canvs = canvasRef.current.getContext("2d");
-      KeyPointDetector(hand, canvs);
-      setAppReady(true);
+      const face = await net.estimateFaces(video);
+      console.log(face);
+      FacePointDetector(face, canvs);
     }
   };
-
-  runHandPose();
+  runFacemesh();
   return (
     <>
       <div className="h-screen flex items-center justify-center border bg-danger w-screen relative">
@@ -111,4 +96,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Face;
