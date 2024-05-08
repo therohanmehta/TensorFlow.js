@@ -1,7 +1,7 @@
 export const FacePointDetector = (predictions, canvas) => {
   if (predictions.length > 0) {
     predictions.forEach((prediction) => {
-      const landmarks = prediction.landmarks;
+      const landmarks = prediction.mesh;
 
       for (let i = 0; i < landmarks.length; i++) {
         const x = landmarks[i][0];

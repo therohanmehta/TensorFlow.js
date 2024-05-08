@@ -42,9 +42,13 @@ function Face() {
 
       const face = await net.estimateFaces(video);
       console.log(face);
+      const canvs = canvasRef.current.getContext("2d");
       FacePointDetector(face, canvs);
+      if (face.length > 0) {
+      }
     }
   };
+
   runFacemesh();
   return (
     <>

@@ -69,16 +69,16 @@ function Home() {
         <Webcam
           ref={webcamRef}
           style={{
-            width: 600,
-            height: 480,
+            width: "100vw",
+            height: "100vh",
             position: "absolute",
           }}
         />
         <canvas
           ref={canvasRef}
           style={{
-            width: 600,
-            height: 480,
+            width: "100vw",
+            height: "100vh",
             position: "absolute",
             // left: 0,
             // top: 0,
